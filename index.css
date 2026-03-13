@@ -569,32 +569,20 @@ body:not(.user-is-tabbing) a:focus {
 
 .resume__content {
     display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
+    justify-content: center;
 }
 
-@media(max-width: 900px) {
-    .resume__content {
-        flex-direction: column-reverse;
-        align-items: initial;
-    }
-}
+
 
 .resume__photo-container {
-    margin-bottom: var(--gutter-normal);
+    max-width: 800px;
 }
 
-@media(min-width: 901px) {
-    .resume__text {
-        flex: 0 0 35%;
-    }
-    
-    .resume__photo-container {
-        flex: 1;
-        margin: 0 var(--gutter-huge) 0 0;
-    }
-}
-
+.resume__photo {
+    width: 100%;
+    height: auto;
+    border: 1px solid #444;
+    border-radius: 4px;
 
 /* --------------------------------------- */
 /* ----- Contact ----- */
