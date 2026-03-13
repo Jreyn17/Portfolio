@@ -583,6 +583,7 @@ body:not(.user-is-tabbing) a:focus {
     height: auto;
     border: 1px solid #444;
     border-radius: 4px;
+}
 
 /* --------------------------------------- */
 /* ----- Contact ----- */
@@ -613,9 +614,7 @@ body:not(.user-is-tabbing) a:focus {
 }
 
 .footer__social-image {
-    width: 32px;
-    height: 32px;
-    max-width: 32px;
+    height: 4rem;
 }
 
 .footer__github-buttons {
