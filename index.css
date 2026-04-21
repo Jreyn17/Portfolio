@@ -106,8 +106,7 @@ body {
 }
 
 section {
-    padding: var(--gutter-huge) 0;
-    border-bottom: var(--border-light);
+    padding: 6rem 0;
 }
 
 img {
@@ -404,26 +403,27 @@ body:not(.user-is-tabbing) a:focus {
 /* --------------------------------------- */
 
 .header {
-    background: linear-gradient(rgba(0,0,0, .1), rgba(0,0,0, .4)), 
-        url('./images/header.jpg');
-    height: 60vh;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    font-size: var(--font-size-normal);
+    height: auto;
+    background: none;
+    padding: 6rem 0 2rem;
 }
 
 .header__text {
-    position: absolute;
-    top: 30%;
-    transform: translateY(-30%);
+    position: relative;
+    top: 0;
+    transform: none;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+}
+
+.header__text h1 {
+    margin-bottom: 1rem;
 }
 
 .header__text p {
-    margin: 1.5rem 0 3.5rem;
-    max-width: var(--container-medium-width);
-    font-family: 'Jost', sans-serif;
+    margin: 0;
     font-size: var(--font-size-medium);
+    opacity: 0.8;
 }
 
 @media(max-width: 500px) {
