@@ -649,3 +649,223 @@ body:not(.user-is-tabbing) a:focus {
     } 
 }
 
+/* ===== Project gallery (450x675 thumbnails, 3 per row) ===== */
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 450px); /* 3 columns, each 450px */
+  gap: 2.4rem;
+  justify-content: center;
+  align-items: start;
+  margin: 2.4rem 0;
+}
+
+/* Make each card a centered column so title aligns under image */
+.project-card {
+  width: 450px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centers the image and title horizontally */
+}
+
+.project-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Keep the image at 450x675 and centered */
+.project-image {
+  width: 450px;
+  height: 675px;
+  object-fit: cover; /* preserves the image ratio while filling container */
+  object-position: center;
+  display: block;
+  border-radius: 4px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+
+.project-link:hover .project-image,
+.project-link:focus .project-image {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.2);
+}
+
+/* ensure title is centered and doesn't overflow */
+.project-title {
+  margin-top: 1.2rem;
+  font-size: 1.6rem;
+  color: var(--white);
+  text-align: center;
+  width: 100%;
+}
+
+/* Responsive breakpoints
+   - On narrower viewports we switch to fluid columns and preserve a 2:3
+     image display using aspect-ratio so images scale down naturally. */
+
+@media (max-width: 1200px) {
+  /* switch grid to use fractional columns and let images be fluid */
+  .project-grid {
+    grid-template-columns: repeat(3, min(450px, 1fr));
+  }
+  .project-card, .project-image {
+    width: 100%;
+  }
+  .project-image {
+    aspect-ratio: 2/3;
+    height: auto;
+    object-fit: cover; /* still preserve image ratio as it scales */
+  }
+}
+
+@media (max-width: 900px) {
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.8rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+  }
+}
+
+/* ===== Project page gallery (for individual project pages) ===== */
+
+.project-page {
+  max-width: 1240px;      /* allow two 600px images + small gap */
+  margin: 8px auto;       /* smaller vertical margins */
+  padding: 6px 10px;      /* small horizontal padding */
+}
+
+/* Heading spacing local to project pages */
+.project-page h1 {
+  margin: 6px 0 10px;
+}
+
+.project-page h2 {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  position: relative;
+  padding-bottom: var(--gutter-small); /* reserve space for the underline */
+}
+
+.project-page h2::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 10rem; /* original underline length */
+  background: var(--pink);
+}
+
+.project-page .steam-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    order: 1; /* keep title and icon before the pseudo-element */
+}
+
+.project-page .steam-link img.footer__social-image {
+    width: 4.6rem; /* larger icon */
+    height: auto;
+}
+
+/* Responsive: stack and scale down on small screens */
+@media (max-width: 500px) {
+    .project-page h2 {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+    }
+
+    .project-page .steam-link img.footer__social-image {
+        width: 2.8rem;
+    }
+
+    .project-page h2::after {
+        margin-top: 0.6rem;
+    }
+}
+
+/* Each gallery image requests natural 600px width but scales down when needed */
+.project-page .gallery-item img {
+  width: 600px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+  object-fit: cover;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+
+.project-page .gallery-item img:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.2);
+}
+
+/* Tighter paragraph spacing for project pages */
+.project-page p { margin: 8px 0; }
+
+/* Small-screen tweaks */
+@media (max-width: 520px) {
+  .project-page { padding: 6px; margin: 8px auto; }
+  .project-page .gallery { gap: 8px; }
+}
+
+/* Fix: center hero image and make gallery 2-up on wide screens */
+.project-page .hero-image {
+  display: block;
+  margin: 2rem auto;      /* center and add vertical spacing */
+  width: 100%;
+  max-width: 900px;       /* limit how wide the hero gets */
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* Grid gallery: 2 columns on wide viewports, 1 column on small screens */
+.project-page .gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.6rem;
+  align-items: start;
+  justify-items: center;
+}
+
+/* Make each gallery item scale to the column width (overrides fixed 600px) */
+.project-page .gallery-item {
+  width: 100%;
+  max-width: 600px; /* keeps images from growing too large */
+}
+
+.project-page .gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1220px) {
+  .project-page .gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .project-page .hero-image {
+    margin: 1rem auto;
+    max-width: 100%;
+  }
+}
+
